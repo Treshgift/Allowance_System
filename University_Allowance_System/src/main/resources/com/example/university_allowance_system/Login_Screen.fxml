@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="520.0" prefWidth="900.0" styleClass="login-root" stylesheets="@login.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.university_allowance_system.LoginScreen">
+
+    <!-- Center container -->
+    <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- Card -->
+        <VBox alignment="CENTER" maxWidth="872.0" prefHeight="520.0" prefWidth="872.0" spacing="14.0" styleClass="login-card">
+
+            <!-- Brand -->
+            <VBox alignment="CENTER" spacing="6">
+                <Label styleClass="brand-title" text="University Allowance System" textFill="#186b5a">
+                    <font>
+                        <Font name="System Bold" size="20" />
+                    </font>
+                </Label>
+
+                <Label styleClass="brand-subtitle" text="Sign in to continue">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.17919999361038208" green="0.5600000023841858" blue="0.4838399887084961" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill></Label>
+            </VBox>
+
+            <!-- Form -->
+            <VBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label styleClass="form-label" text="Username" />
+                <TextField fx:id="usernameField" promptText="e.g. zanaco_user" styleClass="text-input" />
+
+                <Label styleClass="form-label" text="Password" />
+                <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="password-input" />
+
+                <Label styleClass="form-label" text="Role" />
+                <ComboBox fx:id="roleCombo" promptText="Select role" styleClass="role-combo" />
+            </VBox>
+
+            <!-- Actions -->
+            <VBox alignment="CENTER" spacing="10.0">
+
+                <Button fx:id="loginButton" maxWidth="Infinity" onAction="#handleLogin" styleClass="login-button" text="Login" />
+
+                <Hyperlink onAction="#handleForgotPassword" text="Forgot password?" />
+
+                <!-- NEW: Register option -->
+                <HBox alignment="CENTER" spacing="6">
+                    <Label styleClass="small-note" text="Don't have an account?" textFill="#8d7d7d" />
+                    <Hyperlink onAction="#handleRegister" text="Register" />
+                </HBox>
+
+                <!-- Error / info message (hidden by default) -->
+                <Label fx:id="messageLabel" styleClass="message-label" />
+            </VBox>
+
+        </VBox>
+    </StackPane>
+</AnchorPane>

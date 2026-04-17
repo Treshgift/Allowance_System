@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.university_allowance_system.FNBBank"
+            prefHeight="520.0" prefWidth="1100.0"
+            style="-fx-background-color: #0b1220;"
+            styleClass="app-root"
+            stylesheets="@bank-dashboard.css"
+>
+
+
+    <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <!-- TOP BAR -->
+        <top>
+            <HBox alignment="CENTER_LEFT" spacing="12"
+                  style="-fx-background-color: #0f172a; -fx-padding: 14;">
+                <Label text="First Nation Bank"
+                       style="-fx-text-fill: white;">
+                    <font><Font size="18"/></font>
+                </Label>
+
+                <Label text="| Main Dashboard"
+                       style="-fx-text-fill: rgba(255,255,255,0.70); -fx-font-size: 12;"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="welcomeLabel"
+                       text="Hello, Bank Staff"
+                       style="-fx-text-fill: rgba(255,255,255,0.75); -fx-font-size: 12;"/>
+
+                <Button text="Disburse Allowances" onAction="#handleDisburse"
+                        style="-fx-background-radius: 10;
+                               -fx-background-color: rgba(34,197,94,0.20);
+                               -fx-text-fill: #dcffe9;
+                               -fx-padding: 8 12;"/>
+
+                <Button text="Logout" onAction="#handleLogout"
+                        style="-fx-background-radius: 10;
+                               -fx-background-color: rgba(255,255,255,0.12);
+                               -fx-text-fill: white;
+                               -fx-padding: 8 14;"/>
+            </HBox>
+        </top>
+
+        <!-- MAIN -->
+        <center>
+            <VBox spacing="14" style="-fx-padding: 16;">
+
+                <!-- OVERVIEW CARDS ROW -->
+                <HBox spacing="12">
+
+                    <!-- Total Students -->
+                    <VBox spacing="6" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-border-color: rgba(255,255,255,0.10);
+                                 -fx-border-radius: 16;
+                                 -fx-padding: 14;">
+                        <Label text="Total Students"
+                               style="-fx-text-fill: rgba(255,255,255,0.65); -fx-font-size: 12;"/>
+                        <Label fx:id="totalStudentsLabel"
+                               text="8"
+                               style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold;"/>
+                        <Label text="Students assigned to this bank"
+                               style="-fx-text-fill: rgba(255,255,255,0.55); -fx-font-size: 11;"/>
+                    </VBox>
+
+                    <!-- Total Disbursed -->
+                    <VBox spacing="6" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-border-color: rgba(255,255,255,0.10);
+                                 -fx-border-radius: 16;
+                                 -fx-padding: 14;">
+                        <Label text="Total Disbursed (This Month)"
+                               style="-fx-text-fill: rgba(255,255,255,0.65); -fx-font-size: 12;"/>
+                        <Label fx:id="totalDisbursedLabel"
+                               text="K 1,600"
+                               style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold;"/>
+                        <Label text="+ K 1,600 today"
+                               style="-fx-text-fill: rgba(34,197,94,0.90); -fx-font-size: 11;"/>
+                    </VBox>
+
+                    <!-- Pending -->
+                    <VBox spacing="6" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-border-color: rgba(255,255,255,0.10);
+                                 -fx-border-radius: 16;
+                                 -fx-padding: 14;">
+                        <Label text="Pending Records"
+                               style="-fx-text-fill: rgba(255,255,255,0.65); -fx-font-size: 12;"/>
+                        <Label fx:id="pendingLabel"
+                               text="2"
+                               style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold;"/>
+                        <Label text="Awaiting processing"
+                               style="-fx-text-fill: rgba(251,191,36,0.95); -fx-font-size: 11;"/>
+                    </VBox>
+                </HBox>
+
+                <!-- TABLE + DETAILS -->
+                <HBox spacing="12" VBox.vgrow="ALWAYS">
+
+                    <!-- LEFT: Records Table -->
+                    <VBox spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-border-color: rgba(255,255,255,0.10);
+                                 -fx-border-radius: 16;
+                                 -fx-padding: 14;">
+
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label text="Allowance Records"
+                                   style="-fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <TextField fx:id="searchField" promptText="Search..."
+                                       style="-fx-background-radius: 10;
+                                              -fx-background-color: rgba(255,255,255,0.10);
+                                              -fx-text-fill: white;
+                                              -fx-prompt-text-fill: rgba(255,255,255,0.55);
+                                              -fx-border-color: rgba(255,255,255,0.10);
+                                              -fx-border-radius: 10;
+                                              -fx-padding: 8 10;"/>
+                        </HBox>
+
+                        <TableView fx:id="studentsTable" VBox.vgrow="ALWAYS"
+                                   style="-fx-background-color: transparent;">
+                            <columns>
+                                <TableColumn fx:id="colName" text="Name" prefWidth="200"/>
+                                <TableColumn fx:id="colStudentId" text="Student ID" prefWidth="120"/>
+                                <TableColumn fx:id="colBalance" text="Bank Balance" prefWidth="130"/>
+                                <TableColumn fx:id="colMonth" text="Allowance Month" prefWidth="140"/>
+                                <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                            </columns>
+                        </TableView>
+
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <Label fx:id="tableInfoLabel"
+                                   text="Showing 1 to 6 of 8 students"
+                                   style="-fx-text-fill: rgba(255,255,255,0.60); -fx-font-size: 11;"/>
+                            <Button text="Prev" onAction="#handlePrev"
+                                    style="-fx-background-radius: 10;
+                                           -fx-background-color: rgba(255,255,255,0.10);
+                                           -fx-text-fill: white;
+                                           -fx-padding: 6 10;"/>
+                            <Button text="Next" onAction="#handleNext"
+                                    style="-fx-background-radius: 10;
+                                           -fx-background-color: rgba(255,255,255,0.10);
+                                           -fx-text-fill: white;
+                                           -fx-padding: 6 10;"/>
+                        </HBox>
+                    </VBox>
+
+                    <!-- RIGHT: Student Details -->
+                    <VBox spacing="12" prefWidth="360" VBox.vgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-border-color: rgba(255,255,255,0.10);
+                                 -fx-border-radius: 16;
+                                 -fx-padding: 14;">
+
+                        <Label text="Student Details"
+                               style="-fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;"/>
+
+                        <VBox spacing="4">
+                            <Label fx:id="detailNameLabel" text="Alice Banda"
+                                   style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                            <Label fx:id="detailIdLabel" text="STD-001"
+                                   style="-fx-text-fill: rgba(255,255,255,0.70); -fx-font-size: 12;"/>
+                        </VBox>
+
+                        <Separator opacity="0.25"/>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <VBox spacing="4">
+                                <Label text="Bank Balance"
+                                       style="-fx-text-fill: rgba(255,255,255,0.65); -fx-font-size: 12;"/>
+                                <Label fx:id="detailBalanceLabel" text="K 1,100"
+                                       style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                            </VBox>
+                        </HBox>
+
+                        <Separator opacity="0.25"/>
+
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <VBox spacing="4">
+                                <Label text="Loan Amount"
+                                       style="-fx-text-fill: rgba(255,255,255,0.65); -fx-font-size: 12;"/>
+                                <Label fx:id="detailLoanAmountLabel" text="K 4,500"
+                                       style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="detailLoanStatusLabel" text="Approved"
+                                   style="-fx-text-fill: #93c5fd; -fx-font-size: 12; -fx-font-weight: bold;"/>
+                        </HBox>
+
+                        <Separator opacity="0.25"/>
+
+                        <VBox spacing="8">
+                            <Label text="Recent Allowances"
+                                   style="-fx-text-fill: rgba(255,255,255,0.80); -fx-font-size: 12; -fx-font-weight: bold;"/>
+
+                            <HBox spacing="10">
+                                <Label text="February 2026"
+                                       style="-fx-text-fill: rgba(255,255,255,0.70); -fx-font-size: 12;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="Paid"
+                                       style="-fx-text-fill: #22c55e; -fx-font-size: 12; -fx-font-weight: bold;"/>
+                            </HBox>
+
+                            <HBox spacing="10">
+                                <Label text="January 2026"
+                                       style="-fx-text-fill: rgba(255,255,255,0.70); -fx-font-size: 12;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label text="Paid"
+                                       style="-fx-text-fill: #22c55e; -fx-font-size: 12; -fx-font-weight: bold;"/>
+                            </HBox>
+                        </VBox>
+
+                        <Region VBox.vgrow="ALWAYS"/>
+
+                        <HBox spacing="10">
+                            <Button text="View Student Record" onAction="#handleViewStudent"
+                                    maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                                    style="-fx-background-radius: 10;
+                                           -fx-background-color: rgba(147,197,253,0.18);
+                                           -fx-text-fill: #e5f0ff;
+                                           -fx-padding: 10 12;"/>
+                            <Button text="Process Loan" onAction="#handleProcessLoan"
+                                    style="-fx-background-radius: 10;
+                                           -fx-background-color: rgba(255,255,255,0.10);
+                                           -fx-text-fill: white;
+                                           -fx-padding: 10 12;"/>
+                            <Button text="Process Allowance" onAction="#handleProcessAllowance"
+                                    style="-fx-background-radius: 10;
+                                           -fx-background-color: rgba(34,197,94,0.18);
+                                           -fx-text-fill: #dcffe9;
+                                           -fx-padding: 10 12;"/>
+                        </HBox>
+
+                        <!-- For your Chinese Wall demo later -->
+                        <Label fx:id="accessMessageLabel"
+                               style="-fx-text-fill: #fca5a5; -fx-font-size: 12;"/>
+                    </VBox>
+                </HBox>
+
+            </VBox>
+        </center>
+
+    </BorderPane>
+</AnchorPane>

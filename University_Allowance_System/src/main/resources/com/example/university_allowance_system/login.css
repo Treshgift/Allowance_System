@@ -1,0 +1,71 @@
+/* Styles for the login screen */
+
+.login-root {
+    -fx-background-image: url('/com/example/university_allowance_system/images/Gift1.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
+    /* no heavy overlay here so the image remains visible */
+}
+
+.login-card {
+    /* semi-transparent dark card so the image shows through while text stays readable */
+    -fx-background-color: rgba(8,12,20,0.55);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(255,255,255,0.06);
+    -fx-border-radius: 18;
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 18, 0.15, 0, 6);
+    -fx-max-width: 860px;
+}
+
+.brand-title {
+    -fx-text-fill: white; /* bright title on dark card */
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 4, 0.3, 0, 1);
+}
+
+.brand-subtitle {
+    -fx-text-fill: rgba(255,255,255,0.90);
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0.25, 0, 1);
+}
+
+.form-label {
+    -fx-text-fill: rgba(255,255,255,0.95);
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 3, 0.2, 0, 1);
+}
+
+.text-input, .password-input, .role-combo {
+    -fx-background-radius: 10;
+    /* slightly translucent light input so text is readable but the image isn't fully blocked */
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255,255,255,0.65);
+    -fx-border-color: rgba(255,255,255,0.10);
+    -fx-border-radius: 10;
+    -fx-padding: 10 12;
+}
+
+.login-button {
+    -fx-background-radius: 10;
+    -fx-background-color: #2563eb; /* blue primary */
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 10 14;
+    -fx-effect: dropshadow(gaussian, rgba(37,99,235,0.35), 6, 0.2, 0, 2);
+}
+
+.small-note {
+    -fx-text-fill: rgba(17,24,39,0.6);
+    -fx-font-size: 12px;
+}
+
+.message-label {
+    -fx-text-fill: #b91c1c; /* error red */
+    -fx-font-size: 12px;
+}
+

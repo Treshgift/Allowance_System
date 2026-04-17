@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="1100.0" styleClass="app-root" stylesheets="@admin-dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.university_allowance_system.AdminDashboard">
+
+    <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+        <!-- TOP BAR -->
+        <top>
+            <HBox alignment="CENTER_LEFT" spacing="12" styleClass="topbar">
+                <Label styleClass="brand-title" text="University Admin">
+                    <font><Font size="18" /></font>
+                </Label>
+
+                <Label styleClass="brand-subtitle" text="| Dashboard" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Label fx:id="adminNameLabel" styleClass="topbar-muted" text="Admin: System" />
+
+                <Button onAction="#handleLogout" styleClass="btn btn-ghost" text="Logout" />
+            </HBox>
+        </top>
+
+        <!-- MAIN -->
+        <center>
+            <VBox spacing="14" styleClass="content">
+
+                <!-- SUMMARY ROW -->
+                <HBox spacing="12">
+
+                    <VBox spacing="6" styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="muted" text="Total Students" />
+                        <Label fx:id="totalStudentsLabel" styleClass="kpi" text="0" />
+                        <Label styleClass="hint" text="All registered students" />
+                    </VBox>
+
+                    <VBox spacing="6" styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="muted" text="Total Banks" />
+                        <Label fx:id="totalBanksLabel" styleClass="kpi" text="0" />
+                        <Label styleClass="hint" text="Participating banks" />
+                    </VBox>
+
+                    <VBox spacing="6" styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="muted" text="Transactions " />
+                        <Label fx:id="transactionsLabel" styleClass="kpi" text="0" />
+                        <Label styleClass="hint" text="Loans + Allowances" />
+                    </VBox>
+
+                    <VBox spacing="6" styleClass="card" HBox.hgrow="ALWAYS">
+                        <Label styleClass="muted" text="Access Denied Attempts" />
+                        <Label fx:id="deniedAccessLabel" styleClass="kpi" text="0" />
+                        <Label styleClass="warn" text="Chinese Wall blocks" />
+                    </VBox>
+
+                </HBox>
+
+                <!-- TABS -->
+                <TabPane fx:id="adminTabs" styleClass="tabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+                    <!-- STUDENTS TAB -->
+                    <Tab text="Students">
+                        <BorderPane styleClass="tab-page">
+
+                            <top>
+                                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="tab-toolbar">
+                                    <TextField fx:id="studentSearchField" promptText="Search students..." styleClass="search" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button onAction="#handleAddStudent" styleClass="btn btn-blue" text="Add Student" />
+                                    <Button onAction="#handleRefreshStudents" styleClass="btn btn-ghost" text="Refresh" />
+                                </HBox>
+                            </top>
+
+                            <center>
+                                <VBox spacing="8" VBox.vgrow="ALWAYS">
+
+                                    <TableView fx:id="studentsTable" styleClass="table" VBox.vgrow="ALWAYS">
+                                        <columns>
+
+                                            <TableColumn fx:id="colStudentId" prefWidth="120" text="Student ID" />
+
+                                            <TableColumn fx:id="colStudentName" prefWidth="220" text="Name" />
+
+                                            <TableColumn fx:id="colAssignedBank" prefWidth="180" text="Assigned Bank" />
+
+                                            <TableColumn fx:id="colStudentStatus" prefWidth="120" text="Status" />
+
+                                            <!-- EDIT BUTTON COLUMN -->
+                                            <TableColumn fx:id="colEditStudent" text="Edit" />
+
+                                            <!-- DELETE BUTTON COLUMN -->
+                                            <TableColumn fx:id="colDeleteStudent" text="Delete" />
+
+                                        </columns>
+                                    </TableView>
+
+                                    <!-- PAGINATION -->
+                                    <Pagination fx:id="studentPagination" maxPageIndicatorCount="5" prefHeight="35" />
+
+                                </VBox>
+                            </center>
+
+                        </BorderPane>
+                    </Tab>
+
+                    <!-- BANKS TAB -->
+                    <Tab text="Banks">
+                        <BorderPane styleClass="tab-page">
+
+                            <top>
+                                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="tab-toolbar">
+                                    <TextField fx:id="bankSearchField" promptText="Search banks..." styleClass="search" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button onAction="#handleAddBank" styleClass="btn btn-blue" text="Add Bank" />
+                                    <Button onAction="#handleRefreshBanks" styleClass="btn btn-ghost" text="Refresh" />
+                                </HBox>
+                            </top>
+
+                            <center>
+                                <TableView fx:id="banksTable" styleClass="table">
+                                    <columns>
+                                        <TableColumn fx:id="colBankId" prefWidth="120" text="Bank ID" />
+                                        <TableColumn fx:id="colBankName" prefWidth="240" text="Bank Name" />
+                                        <TableColumn fx:id="colBankUsers" prefWidth="120" text="Users" />
+                                    </columns>
+                                </TableView>
+                            </center>
+
+                        </BorderPane>
+                    </Tab>
+
+                    <!-- TRANSACTIONS TAB -->
+                    <Tab text="Transactions">
+                        <BorderPane styleClass="tab-page">
+
+                            <top>
+                                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="tab-toolbar">
+                                    <ComboBox fx:id="transactionTypeCombo" promptText="Type (Loan/Allowance)" styleClass="combo" />
+                                    <TextField fx:id="transactionSearchField" promptText="Search transactions..." styleClass="search" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button onAction="#handleRefreshTransactions" styleClass="btn btn-ghost" text="Refresh" />
+                                </HBox>
+                            </top>
+
+                            <center>
+                                <TableView fx:id="transactionsTable" styleClass="table">
+                                    <columns>
+                                        <TableColumn fx:id="colTxnId" prefWidth="100" text="Txn ID" />
+                                        <TableColumn fx:id="colTxnStudent" prefWidth="220" text="Student" />
+                                        <TableColumn fx:id="colTxnType" prefWidth="140" text="Type" />
+                                        <TableColumn fx:id="colTxnAmount" prefWidth="140" text="Amount" />
+                                        <TableColumn fx:id="colTxnStatus" prefWidth="120" text="Status" />
+                                        <TableColumn fx:id="colTxnDate" prefWidth="160" text="Date" />
+                                    </columns>
+                                </TableView>
+                            </center>
+
+                        </BorderPane>
+                    </Tab>
+
+                    <!-- ACCESS LOG TAB -->
+                    <Tab text="Access Log">
+                        <BorderPane styleClass="tab-page">
+
+                            <top>
+                                <HBox alignment="CENTER_LEFT" spacing="10" styleClass="tab-toolbar">
+                                    <ComboBox fx:id="accessFilterCombo" promptText="Filter (Allowed/Denied)" styleClass="combo" />
+                                    <TextField fx:id="accessSearchField" promptText="Search access log..." styleClass="search" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button onAction="#handleRefreshAccessLog" styleClass="btn btn-ghost" text="Refresh" />
+                                </HBox>
+                            </top>
+
+                            <center>
+                                <!-- Access Log table -->
+                                <TableView fx:id="accessLogTable" styleClass="table">
+                                    <columns>
+                                        <TableColumn fx:id="colLogId" prefWidth="90" text="Log ID" />
+                                        <TableColumn fx:id="colLogUser" prefWidth="160" text="User" />
+                                        <TableColumn fx:id="colLogRole" prefWidth="120" text="Role" />
+                                        <TableColumn fx:id="colLogBank" prefWidth="160" text="Bank" />
+                                        <TableColumn fx:id="colLogStudent" prefWidth="220" text="Student" />
+                                        <TableColumn fx:id="colLogAction" prefWidth="160" text="Action" />
+                                        <TableColumn fx:id="colLogAllowed" prefWidth="110" text="Access" />
+                                        <TableColumn fx:id="colLogTime" prefWidth="190" text="Timestamp" />
+                                    </columns>
+                                </TableView>
+                            </center>
+
+                        </BorderPane>
+                    </Tab>
+
+                </TabPane>
+
+            </VBox>
+        </center>
+
+    </BorderPane>
+</AnchorPane>

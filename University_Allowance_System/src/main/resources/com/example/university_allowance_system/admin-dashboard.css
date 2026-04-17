@@ -1,0 +1,263 @@
+/* ================================
+   ROOT
+================================ */
+
+.app-root{
+    -fx-background-color:#0f172a;
+    -fx-font-family:"Segoe UI";
+}
+
+.content{
+    -fx-padding:20;
+    -fx-spacing:16;
+}
+
+/* ================================
+   TOP BAR
+================================ */
+
+.topbar{
+    -fx-background-color:linear-gradient(to right,#0f172a,#1e293b);
+    -fx-padding:14 20;
+    -fx-border-color:transparent transparent #334155 transparent;
+}
+
+.brand-title{
+    -fx-text-fill:white;
+    -fx-font-weight:bold;
+}
+
+.brand-subtitle{
+    -fx-text-fill:#cbd5e1;
+}
+
+.topbar-muted{
+    -fx-text-fill:#e2e8f0;
+}
+
+/* ================================
+   DASHBOARD CARDS
+================================ */
+
+.card{
+    -fx-background-color:#1e293b;
+    -fx-background-radius:14;
+    -fx-border-radius:14;
+    -fx-border-color:#334155;
+    -fx-padding:18;
+    -fx-effect:dropshadow(gaussian, rgba(0,0,0,0.35),8,0,0,2);
+}
+
+.card:hover{
+    -fx-background-color:#334155;
+}
+
+.kpi{
+    -fx-text-fill:white;
+    -fx-font-size:22px;
+    -fx-font-weight:bold;
+}
+
+.muted{
+    -fx-text-fill:#cbd5e1;
+}
+
+.hint{
+    -fx-text-fill:#94a3b8;
+}
+
+.warn{
+    -fx-text-fill:#facc15;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn{
+    -fx-background-radius:8;
+    -fx-padding:8 14;
+    -fx-font-weight:600;
+    -fx-cursor:hand;
+}
+
+.btn-blue{
+    -fx-background-color:#2563eb;
+    -fx-text-fill:white;
+}
+
+.btn-blue:hover{
+    -fx-background-color:#1d4ed8;
+}
+
+.btn-ghost{
+    -fx-background-color:#1e293b;
+    -fx-border-color:#334155;
+    -fx-text-fill:#e2e8f0;
+}
+
+.btn-ghost:hover{
+    -fx-background-color:#334155;
+}
+
+/* ================================
+   TABLE (BLUE THEME)
+================================ */
+
+.table-view{
+    -fx-background-color:#1e3a8a;
+    -fx-border-color:#3b82f6;
+    -fx-border-radius:8;
+}
+
+/* ================================
+   TABLE HEADERS
+================================ */
+
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to bottom,#2563eb,#1d4ed8);
+    -fx-border-color:#1e3a8a;
+    -fx-border-width:0 0 2 0;
+}
+
+.table-view .column-header{
+    -fx-background-color:transparent;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill:white;
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+    -fx-alignment:CENTER_LEFT;
+    -fx-padding:6 10 6 10;
+}
+
+.table-view .column-header:hover{
+    -fx-background-color:#2563eb;
+}
+
+/* ================================
+   TABLE ROWS
+================================ */
+
+.table-row-cell{
+    -fx-background-color:#1e40af;
+    -fx-border-color:transparent transparent #1e3a8a transparent;
+    -fx-cell-size:36px;
+}
+
+.table-row-cell:odd{
+    -fx-background-color:#1d4ed8;
+}
+
+.table-row-cell:hover{
+    -fx-background-color:#2563eb;
+}
+
+.table-row-cell:selected{
+    -fx-background-color:#3b82f6;
+}
+
+/* ================================
+   TABLE CELLS
+================================ */
+
+.table-cell{
+    -fx-text-fill:white;
+    -fx-font-size:13px;
+    -fx-padding:0 10;
+}
+
+/* selected text */
+
+.table-row-cell:selected .text{
+    -fx-fill:white;
+}
+
+/* ================================
+   FIX EDIT / DELETE BUTTON VISIBILITY
+================================ */
+
+.table-cell .button{
+    -fx-background-color:#1e293b;
+    -fx-text-fill:white;
+    -fx-background-radius:6;
+    -fx-padding:4 10;
+    -fx-font-size:11px;
+}
+
+.table-cell .button:hover{
+    -fx-background-color:#334155;
+}
+
+/* ================================
+   STATUS BADGES
+================================ */
+
+.status-active{
+    -fx-background-color:#16a34a;
+    -fx-text-fill:white;
+    -fx-padding:4 10;
+    -fx-background-radius:10;
+    -fx-font-weight:bold;
+}
+
+.status-inactive{
+    -fx-background-color:#dc2626;
+    -fx-text-fill:white;
+    -fx-padding:4 10;
+    -fx-background-radius:10;
+    -fx-font-weight:bold;
+}
+
+/* ================================
+   BANK LABEL
+================================ */
+
+.bank-label{
+    -fx-background-color:#2563eb;
+    -fx-text-fill:white;
+    -fx-padding:4 10;
+    -fx-background-radius:10;
+    -fx-font-weight:bold;
+}
+
+/* ================================
+   PAGINATION
+================================ */
+
+.pagination{
+    -fx-padding:10 0 0 0;
+}
+
+.pagination .button{
+    -fx-background-color:#1e293b;
+    -fx-text-fill:white;
+    -fx-border-color:#334155;
+}
+
+.pagination .button:hover{
+    -fx-background-color:#334155;
+}
+
+/* ================================
+   SCROLLBARS
+================================ */
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal{
+    -fx-background-color:#0f172a;
+}
+
+.scroll-bar .thumb{
+    -fx-background-color:#475569;
+    -fx-background-radius:6;
+}
+
+.scroll-bar .thumb:hover{
+    -fx-background-color:#64748b;
+}
+
+.scroll-bar .track{
+    -fx-background-color:#0f172a;
+}

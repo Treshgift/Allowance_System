@@ -1,0 +1,147 @@
+/* Shared application theme for University Allowance System
+   - Modern neutral palette suitable for presentations
+   - Use this file to centralize colors, typography, and common components
+*/
+
+:root {
+    /* Color tokens */
+    -primary: #0b5b5a; /* deep teal */
+    -accent: #06b6d4; /* bright cyan */
+    -muted: #9ca3af; /* muted grey */
+    -bg: #0b1220; /* deep navy background */
+    -surface: #0f1724; /* card surface */
+    -success: #10b981; /* green */
+    -danger: #ef4444; /* red */
+    -radius: 10px;
+    -card-padding: 16px;
+}
+
+.root {
+    -fx-background-color: linear-gradient(to bottom right, derive(-bg, 6%), -bg);
+    -fx-font-family: "Segoe UI", "Inter", "Arial";
+    -fx-font-size: 13px;
+    -fx-text-fill: #e6eef6;
+}
+
+/* Card surface */
+.surface-card {
+    -fx-background-color: -surface;
+    -fx-background-radius: -radius;
+    -fx-padding: -card-padding;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 12, 0.0, 0, 4);
+}
+
+/* Header bar */
+.header-bar {
+    -fx-background-color: linear-gradient(to right, derive(-surface, 6%), -surface);
+    -fx-padding: 12 18 12 18;
+    -fx-background-radius: 0 0 8 8;
+}
+.header-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -accent;
+}
+.header-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: -muted;
+}
+
+/* Buttons */
+.btn {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, -accent, derive(-accent, -10%));
+    -fx-text-fill: #042f2f;
+    -fx-padding: 8 14 8 14;
+    -fx-background-radius: 8;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 8;
+    -fx-text-fill: -muted;
+    -fx-padding: 6 12 6 12;
+}
+
+/* Labels */
+.label-muted {
+    -fx-text-fill: -muted;
+}
+.label-accent {
+    -fx-text-fill: -accent;
+    -fx-font-weight: 600;
+}
+.label-success {
+    -fx-text-fill: -success;
+    -fx-font-weight: 600;
+}
+
+.label-error {
+    -fx-text-fill: #fca5a5;
+}
+
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255,255,255,0.06);
+    -fx-border-radius: 8;
+    -fx-text-fill: -muted;
+    -fx-padding: 6 12;
+}
+
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255,255,255,0.04);
+    -fx-text-fill: -muted;
+    -fx-padding: 6 12;
+}
+
+/* Table styling */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+.table-row-cell:filled:selected {
+    -fx-background-color: rgba(6,182,212,0.08);
+}
+.table-cell {
+    -fx-padding: 6 10 6 10;
+    -fx-text-fill: rgba(230,238,246,0.95);
+    -fx-font-weight: 600;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: rgba(255,255,255,0.03);
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: rgba(230,238,246,0.95);
+    -fx-font-weight: 700;
+}
+
+/* Cards layout */
+.cards-grid {
+    -fx-hgap: 14;
+    -fx-vgap: 14;
+}
+
+/* Small helpers */
+.k-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+}
+
+/* High-contrast override for presentations */
+.high-contrast .root {
+    -fx-background-color: #0b1220;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 900px) {
+    .header-title { -fx-font-size: 16px; }
+    .k-label { -fx-font-size: 14px; }
+}
+

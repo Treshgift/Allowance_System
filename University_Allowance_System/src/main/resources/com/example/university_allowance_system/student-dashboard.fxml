@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.university_allowance_system.StudentDashboard"
+            prefHeight="520.0" prefWidth="900.0"
+            style="-fx-background-color: #0b1220;"
+            stylesheets="@student-dashboard.css"
+>
+
+    <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+        <!-- TOP BAR -->
+        <top>
+            <HBox alignment="CENTER_LEFT" spacing="12"
+                  style="-fx-background-color: #0f172a; -fx-padding: 14;">
+                <Label text="Student Portal"
+                       style="-fx-text-fill: white;">
+                    <font>
+                        <Font size="18"/>
+                    </font>
+                </Label>
+
+                <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" spacing="10">
+                    <Label fx:id="studentNameLabel"
+                           text="Student:"
+                           style="-fx-text-fill: rgba(255,255,255,0.75); -fx-font-size: 12;"/>
+
+                    <Button text="Refresh" onAction="#handleRefresh"
+                            style="-fx-background-radius: 10;
+                                   -fx-background-color: rgba(255,255,255,0.10);
+                                   -fx-text-fill: white;
+                                   -fx-padding: 6 10;"/>
+
+                    <Button text="Logout" onAction="#handleLogout"
+                            style="-fx-background-radius: 10;
+                                   -fx-background-color: rgba(255,255,255,0.12);
+                                   -fx-text-fill: white;
+                                   -fx-padding: 8 14;"/>
+                </HBox>
+            </HBox>
+        </top>
+
+        <!-- MAIN -->
+        <center>
+            <VBox spacing="14" style="-fx-padding: 18;">
+
+                <!-- SUMMARY -->
+                <VBox spacing="8"
+                      style="-fx-background-color: rgba(255,255,255,0.06);
+                             -fx-background-radius: 16;
+                             -fx-border-color: rgba(255,255,255,0.10);
+                             -fx-border-radius: 16;
+                             -fx-padding: 16;">
+
+                    <Label text="Overview"
+                           style="-fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;"/>
+
+                    <HBox spacing="20">
+
+                        <VBox spacing="4">
+                            <Label text="Assigned Bank"
+                                   style="-fx-text-fill: rgba(255,255,255,0.65);"/>
+                            <Label fx:id="assignedBankLabel"
+                                   style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                        </VBox>
+
+                            <VBox spacing="4">
+                                <Label text="Balance"
+                                       style="-fx-text-fill: rgba(255,255,255,0.65);"/>
+                                <Label fx:id="balanceLabel"
+                                       style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                            </VBox>
+
+                        <VBox spacing="4">
+                            <Label text="Student ID"
+                                   style="-fx-text-fill: rgba(255,255,255,0.65);"/>
+                            <Label fx:id="studentIdLabel"
+                                   style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+                        </VBox>
+
+                        <VBox spacing="4">
+                            <Label text="Status"
+                                   style="-fx-text-fill: rgba(255,255,255,0.65);"/>
+                            <Label fx:id="statusLabel"
+                                   style="-fx-text-fill: #22c55e; -fx-font-weight: bold;"/>
+                        </VBox>
+
+                    </HBox>
+                </VBox>
+
+                <!-- CARDS -->
+                <HBox spacing="14">
+
+                    <!-- LOAN -->
+                    <VBox spacing="10" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-padding: 16;">
+
+                        <Label text="Loan Details"
+                               style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                        <Separator opacity="0.25"/>
+
+                        <HBox spacing="12">
+                            <VBox>
+                                <Label text="Loan Amount"/>
+                                <Label fx:id="loanAmountLabel"
+                                       style="-fx-text-fill: white; -fx-font-size: 16;"/>
+                            </VBox>
+
+                            <VBox>
+                                <Label text="Loan Status"/>
+                                <Label fx:id="loanStatusLabel"
+                                       style="-fx-text-fill: #93c5fd;"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                    <!-- TRANSACTION HISTORY -->
+                    <VBox spacing="10"
+                          style="-fx-background-color: rgba(255,255,255,0.05);
+             -fx-background-radius: 16;
+             -fx-padding: 16;">
+
+                        <Label text="Transaction History"
+                               style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                        <TableView fx:id="historyTable"
+                                   style="-fx-background-color: transparent;
+                      -fx-control-inner-background: rgba(255,255,255,0.03);
+                      -fx-table-cell-border-color: transparent;">
+
+                            <columns>
+
+                                <TableColumn fx:id="colMonth"
+                                             text="Month"
+                                             prefWidth="180"/>
+
+                                <TableColumn fx:id="colAmount"
+                                             text="Amount"
+                                             prefWidth="150"/>
+
+                                <TableColumn fx:id="colStatus"
+                                             text="Status"
+                                             prefWidth="120"/>
+
+                            </columns>
+
+                        </TableView>
+                    </VBox>
+
+                    <!-- ALLOWANCE -->
+                    <VBox spacing="10" HBox.hgrow="ALWAYS"
+                          style="-fx-background-color: rgba(255,255,255,0.06);
+                                 -fx-background-radius: 16;
+                                 -fx-padding: 16;">
+
+                        <Label text="Allowance Details"
+                               style="-fx-text-fill: white; -fx-font-weight: bold;"/>
+
+                        <Separator opacity="0.25"/>
+
+                        <HBox spacing="12">
+                            <VBox>
+                                <Label text="Month"/>
+                                <Label fx:id="allowanceMonthLabel"/>
+                            </VBox>
+
+                            <VBox>
+                                <Label text="Amount"/>
+                                <Label fx:id="allowanceAmountLabel"/>
+                            </VBox>
+
+                            <VBox>
+                                <Label text="Status"/>
+                                <Label fx:id="allowanceStatusLabel"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+
+                </HBox>
+
+                <!-- NOTICE -->
+                <Label fx:id="noticeLabel"
+                       text="Keep your bank details updated."
+                       style="-fx-text-fill: rgba(255,255,255,0.7);"/>
+
+            </VBox>
+        </center>
+
+    </BorderPane>
+</AnchorPane>

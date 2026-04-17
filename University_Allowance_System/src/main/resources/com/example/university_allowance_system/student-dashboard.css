@@ -1,0 +1,99 @@
+.root {
+    -fx-background-color: #0b1220;
+}
+
+/* Table */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 12;
+}
+
+/* Header */
+.table-view .column-header-background {
+    -fx-background-color: rgba(255,255,255,0.05);
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .label {
+    -fx-text-fill: rgba(255,255,255,0.85);
+    -fx-font-weight: bold;
+}
+
+/* Rows */
+.table-row-cell {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(59,130,246,0.25);
+}
+
+/* Cells */
+.table-cell {
+    -fx-text-fill: rgba(255,255,255,0.85);
+}
+
+/* Make the allowance details more visible */
+#allowanceMonthLabel {
+    -fx-text-fill: rgba(255,255,255,0.95);
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+#allowanceAmountLabel {
+    /* green highlight like paid amounts in the table */
+    -fx-text-fill: #22c55e;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+#allowanceStatusLabel {
+    -fx-text-fill: #93c5fd; /* light blue */
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+/* Allowance card background & padding to increase contrast */
+#allowanceCard {
+    -fx-background-color: rgba(255,255,255,0.02); /* slightly lighter */
+    -fx-background-radius: 12;
+    -fx-padding: 14 16 14 16;
+    -fx-border-color: rgba(255,255,255,0.04);
+    -fx-border-radius: 12;
+}
+
+/* Loan details: make values more visible */
+#loanAmountLabel {
+    -fx-text-fill: rgba(255,255,255,0.95);
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#loanStatusLabel {
+    -fx-text-fill: #93c5fd;
+    -fx-font-weight: bold;
+}
+
+/* Overview summary: make key values pop */
+#assignedBankLabel, #balanceLabel, #studentIdLabel {
+    -fx-text-fill: rgba(255,255,255,0.95);
+    -fx-font-weight: bold;
+}
+
+#balanceLabel {
+    -fx-text-fill: #22c55e; /* green */
+    -fx-font-size: 14px;
+}
+
+#overviewCard {
+    -fx-background-color: rgba(255,255,255,0.04);
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 16;
+    -fx-padding: 16;
+}
+
